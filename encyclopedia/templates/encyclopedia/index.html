@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+	<h1>All Pages</h1>
+	<ul>
+		{% for entry in entries %}
+			<form action="{% url 'encyclopedia:click_entry' %}" method="post">
+				{% csrf_token %}
+				<li><button type="submit" class="button btn" value="" name={{ entry }}>{{ entry }}</button></li>
+			</form>
+		{% endfor %}
+	</ul>
+{% endblock %}

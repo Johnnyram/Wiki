@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+
+<h1>Did you mean?</h1>
+	{% if substring_entries %}
+		<ul>
+			{% for wiki in substring_entries %}
+				<form action="{% url 'encyclopedia:click_entry' %}" method="post">{% csrf_token %}
+				{% csrf_token %}
+				<li><button type="submit" class="button btn" name={{ wiki }}>{{ wiki }}</button></li>
+				</form>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endblock %}
